@@ -5,6 +5,7 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
 // Siga os comentários para implementar cada parte do desafio.
 //Teste Elson
+// COMENTARIOS FEITOS EM APENAS UMA DAS CARTAS POIS SERVE PARA AS DUAS, NAO TEM MODIFICAÇOES SIGNIFICATIVAS PARA COMENTAR AS DUAS.
 
 int main() {
     printf("Desafio Super Trunfo - Estados Brasileiros.\n");
@@ -32,12 +33,12 @@ int main() {
         printf("O estado é: %s\n", Estado);
     
     
-        printf("Qual o codigo da carta?:");
+        printf("Qual o codigo da carta?: ");
         scanf("%s", &Codigo_da_Carta);
         printf("O codigo da carta é: %s\n", Codigo_da_Carta);
     
     
-        printf("Digite a cidade\n");
+        printf("Digite a cidade: ");
         scanf("%s", &Cidade);
         printf("A cidade é: %s\n", Cidade);
     
@@ -86,7 +87,7 @@ int main() {
         printf("O codigo da carta é: %s\n", Codigo_da_Carta2);
     
     
-        printf("Digite a cidade\n");
+        printf("Digite a cidade: ");
         scanf("%s", &Cidade2);
         printf("A cidade é: %s\n", Cidade2);
     
