@@ -11,185 +11,89 @@
     int main(){
 
    // Definindo as variáveis.
-    // Carta 1
-    int carta = 1;
-    char Estado[20] = "Pará";         // Evitar usar nomes fixos para depois conseguir mudar atraves de algumas variáveis
-    char Codigo_da_Carta[20] = "A01"; // O código da carta é uma string.
-    char Cidade[20] = "Belem";
-    unsigned long int Populacao = 9079000;
-    float Area_em_km = 1.248000;  // A área está em km².
-    float pib = 262.905;          // PIB referenciado em Milhoes de Reais.
-    int pontos = 135;             // Número de pontos turísticos pode variar de cidade para cidade.
-    float Densidade_populacional; // Variável para armazenar a densidade populacional
-    float Pib_per_Capta;          // Variável para armazenar o PIB per capita
-    float Super_Poder;            // Variável para armazenar o Super Poder
+  // Inicializa o gerador de números aleatórios
+  srand(time(0));
 
-    // As informaçoes da carta 1 tambem serao usadas para a carta 2 com pequenas modificaçoes
-    //  Carta 2
-    int carta2 = 2;
-    char Estado2[20] = "Pernambuco";
-    char Codigo_da_Carta2[20] = "B02";
-    char Cidade2[20] = "Recife";
-    unsigned long int Populacao2 = 9059000;
-    float Area_em_km2 = 98.312;
-    float pib2 = 220.814;
-    int pontos2 = 135;
-    float Densidade_populacional2;
-    float Pib_per_Capta2;
-    float Super_Poder2;
+  // Definição das cartas
+  char Estado1[20] = "Pará", Codigo1[5] = "A01", Cidade1[20] = "Belém";
+  unsigned long int Populacao1 = 9019000;
+  float Area1 = 99000, PIB1 = 262.905;
+  int Pontos1 = 135;
+  float Densidade1 = Populacao1 / Area1;
+  float PIB_per_Capita1 = (PIB1 * 100000) / Populacao1;
+  
+  char Estado2[20] = "Pernambuco", Codigo2[5] = "B02", Cidade2[20] = "Recife";
+  unsigned long int Populacao2 = 9100000;
+  float Area2 = 98312, PIB2 = 272.905;
+  int Pontos2 = 165;
+  float Densidade2 = Populacao2 / Area2;
+  float PIB_per_Capita2 = (PIB2 * 100000) / Populacao2;
 
-    // Calculando as variáveis para a carta 1
-    Densidade_populacional = Populacao / Area_em_km;
-    Pib_per_Capta = pib * 100000 / Populacao;
-    Super_Poder = Populacao + Area_em_km + pib + pontos + Pib_per_Capta + (1 / Densidade_populacional);
+  // Variáveis de escolha dos atributos
+  int opcao, opcao2;
 
-    // Calculando as variáveis para a carta 2
-    Densidade_populacional2 = Populacao2 / Area_em_km;
-    Pib_per_Capta2 = pib2 * 100000 / Populacao2;
-    Super_Poder2 = Populacao2 + Area_em_km2 + pib2 + pontos2 + Pib_per_Capta2 + (1 / Densidade_populacional2);
+  printf("Escolha dois atributos diferentes:\n");
+  printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Populacional\n");
+  
+  // Escolha do primeiro atributo
+  printf("Escolha o primeiro atributo: ");
+  scanf("%d", &opcao);
+  
+  // Escolha do segundo atributo
+  printf("Escolha o segundo atributo: ");
+  scanf("%d", &opcao2);
+  
+  // Verifica se os atributos são diferentes
+  if (opcao == opcao2) {
+      opcao2 = (rand() % 5) + 1; // Escolhe um atributo aleatório diferente
+      while (opcao2 == opcao) {
+          opcao2 = (rand() % 5) + 1;
+      }
+      printf("Atributo repetido! Escolhendo automaticamente outro: %d\n", opcao2);
+  }
 
-    // Exibindo os resultados das comparações
-    // Foram adicionados parametros de ESTRUTURA DE DECISÃO para melhorar a visualização do jogo
-    // Comparando População
-    int menu;
-    printf("\nEscolha o atributo de comparaçao\n");
-    printf("1 - Populaçao\n");
-    printf("2 - Area\n");
-    printf("3 - PIB\n");
-    printf("4 - Pontos Turisticos\n");
-    printf("5 - Densidade Populacional\n");
-    printf("Voce escolheu a opçao: ");
-    scanf("%d", &menu);
-    // O operador switch foi adicionado para melhorar a visualização do jogo e facilitar a compreensão do menu interativo
-    // Codigo com switch e operadores aninhados para decidir qual atributo será comparado
-    switch (menu) // Todo codigo deve estar dentro do switch
-    {
-    case 1:
-        // printf(" Comparação de Cartas\n");
-        printf("Populacao: ");
-        if (Populacao > Populacao2)
-        {
-            printf("A população do Pará é maior - ");
-        }
-        else if (Populacao < Populacao2)
-        {
-            printf("A população do Pernambuco é maior - ");
-        }
-        else
-        {
-            printf("EMPATOU AMBOS TEM A MESMA POPULAÇÃO - ");
-        }
+  // Variáveis para os valores dos atributos
+  float valor1_opcao = 0, valor2_opcao = 0, valor1_opcao2 = 0, valor2_opcao2 = 0;
 
-        printf("%d\n", (Populacao > Populacao2) ? 1 : 0);
-        // 1 para Carta 1 vence, 0 para Carta 2 vence
+  // Usando switch para atribuir os valores dos atributos para o primeiro atributo
+  switch (opcao) {
+      case 1: valor1_opcao = Populacao1; valor2_opcao = Populacao2; break;
+      case 2: valor1_opcao = Area1; valor2_opcao = Area2; break;
+      case 3: valor1_opcao = PIB1; valor2_opcao = PIB2; break;
+      case 4: valor1_opcao = Pontos1; valor2_opcao = Pontos2; break;
+      case 5: valor1_opcao = Densidade1; valor2_opcao = Densidade2; break;
+      default: printf("Opção inválida.\n"); return 1;
+  }
+  
+  // Usando switch para atribuir os valores dos atributos para o segundo atributo
+  switch (opcao2) {
+      case 1: valor1_opcao2 = Populacao1; valor2_opcao2 = Populacao2; break;
+      case 2: valor1_opcao2 = Area1; valor2_opcao2 = Area2; break;
+      case 3: valor1_opcao2 = PIB1; valor2_opcao2 = PIB2; break;
+      case 4: valor1_opcao2 = Pontos1; valor2_opcao2 = Pontos2; break;
+      case 5: valor1_opcao2 = Densidade1; valor2_opcao2 = Densidade2; break;
+      default: printf("Opção inválida.\n"); return 1;
+  }
 
-        break;
+  // Soma dos valores dos atributos
+  float soma1 = valor1_opcao + valor1_opcao2;
+  float soma2 = valor2_opcao + valor2_opcao2;
 
-        // Comparando Área
-    case 2:
-        printf("Area: ");
-        if (Area_em_km > Area_em_km2)
-        {
-            printf("O Pará tem a maior area em km² - ");
-        }
-        else if (Area_em_km < Area_em_km2)
-        {
-            printf("O Pernambuco tem a maior area em km² - ");
-        }
-        else
-        {
-            printf("EMPATOU AMBOS TEM A MESMA AREA EM KM² - ");
-        }
-
-        printf("%d\n", (Area_em_km > Area_em_km2) ? 1 : 0); // 1 para Carta 1 vence, 0 para Carta 2 vence
-        break;
-    // Comparando PIB
-    case 3:
-        printf("PIB: ");
-        if (pib > pib2)
-        {
-            printf("O Pará tem o maior PIB - ");
-        }
-        else if (pib < pib2)
-        {
-            printf("Pernambuco tem o maior PIB - ");
-        }
-        else
-        {
-            printf("EMPATOU AMBOS TEM O MESMO PIB - ");
-            ;
-        }
-
-        printf("%d\n", (pib > pib2) ? 1 : 0); // 1 para Carta 1 vence, 0 para Carta 2 vence
-        break;
-        
-    // Comparando Pontos Turísticos
-    case 4:
-        printf("Pontos Turisticos: ");
-        if (pontos > pontos2)
-        {
-            printf("Pará tem mais pontos turísticos - ");
-        }
-        else if (pontos < pontos2)
-        {
-            printf("Pernambuco tem mais pontos turísticos - ");
-        }
-        else
-        {
-            printf("EMPATOU AMBOS TEM A MESMA QUANTIDADE DE PONTOS TURISTICOS - ");
-        }
-
-        printf("%d\n", (pontos > pontos2) ? 1 : 0); // 1 para Carta 1 vence, 0 para Carta 2 vence
-        break;
-
-        // Comparando PIB per Capita
-        printf("PIB per Capita: ");
-        if (Pib_per_Capta > Pib_per_Capta2)
-        {
-            printf("Carta 1 vence - ");
-        }
-        else
-        {
-            printf("Carta 2 vence - ");
-        }
-
-        printf("%d\n", (Pib_per_Capta > Pib_per_Capta2) ? 1 : 0); // 1 para Carta 1 vence, 0 para Carta 2 vence
-
-    // Comparando Densidade Populacional (menor densidade vence)
-    case 5:
-        printf("Densidade Populacional: ");
-        if (Densidade_populacional < Densidade_populacional2)
-        {
-            printf("Para ganha pois tem a menor densidade populacional - ");
-        }
-        else if (Densidade_populacional > Densidade_populacional2)
-        {
-            printf("Pernambuco ganha pois tem a menor densidade populacional - ");
-        }
-        else
-        {
-            printf("EMPATOU AMBOS TEM A MESMA DENSIDADE POPULACIONAL - ");
-        }
-
-        printf("%d\n", (Densidade_populacional < Densidade_populacional2) ? 1 : 0); // 1 para Carta 1 vence (menor densidade), 0 para Carta 2 vence
-        break;
-
-        // Comparando Super Poder
-        printf("Super Poder: ");
-        if (Super_Poder > Super_Poder2)
-        {
-            printf("Carta 1 vence - ");
-        }
-        else
-        {
-            printf("Carta 2 vence - ");
-        }
-
-        printf("%d\n", (Super_Poder > Super_Poder2) ? 1 : 0); // 1 para Carta 1 vence, 0 para Carta 2 vence
-
-    default:
-        printf("Opção inválida. Por favor, escolha uma opção válida entre 1 e 5.\n");
-    }
+  // Exibição dos resultados
+  printf("\nComparação entre %s (Carta 1) e %s (Carta 2):\n", Estado1, Estado2);
+  printf("Atributo %d: %.2f vs %.2f\n", opcao, valor1_opcao, valor2_opcao);
+  printf("Atributo %d: %.2f vs %.2f\n", opcao2, valor1_opcao2, valor2_opcao2);
+  printf("Soma dos atributos: %.2f vs %.2f\n", soma1, soma2);
+  
+  // Resultado da comparação
+  if (soma1 > soma2) {
+      printf("O estado do Pará venceu!\n");
+  } else if (soma2 > soma1) {
+      printf("O estado de Pernambuco venceu!\n");
+  } else {
+      printf("Empate!\n");
+  }
+  
     return 0; // Encerramento da função main (Sempre encerrar)
 
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
